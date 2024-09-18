@@ -14,8 +14,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.ArrowForwardIos
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -31,10 +35,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.testovoeyandexschedule.ui.theme.IconBusColor
+import com.example.testovoeyandexschedule.ui.theme.MainMenuBtn
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-
+import java.util.Locale
 
 
 @Composable
@@ -55,6 +61,7 @@ fun CalendarDialog(
                 Text("Отмена")
             }
         }
+        , containerColor = Color.White
     )
 }
 
@@ -65,7 +72,7 @@ fun CustomCalendar(
     var selectedDate by remember { mutableStateOf(LocalDate.now()) }
     var currentMonth by remember { mutableStateOf(YearMonth.now()) }
 
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(16.dp).background(Color.White)) {
         CalendarHeader(
             currentMonth = currentMonth,
             onPreviousMonth = { currentMonth = currentMonth.minusMonths(1) },
@@ -101,17 +108,17 @@ fun CalendarHeader(
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(onClick = onPreviousMonth) {
-            Text("<", fontSize = MaterialTheme.typography.bodyLarge.fontSize)
+            Icon(imageVector = Icons.Filled.ArrowBackIosNew, contentDescription = "")
         }
 
         Text(
-            text = currentMonth.format(DateTimeFormatter.ofPattern("MMMM yyyy")),
+            text = currentMonth.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale("ru"))),
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
 
         IconButton(onClick = onNextMonth) {
-            Text(">", fontSize = MaterialTheme.typography.bodyLarge.fontSize)
+            Icon(imageVector = Icons.Filled.ArrowForwardIos, contentDescription = "")
         }
     }
 }
@@ -158,7 +165,7 @@ fun CalendarDays(
                                 .aspectRatio(1f)
                                 .clickable { onDateSelected(date) }
                                 .background(
-                                    if (date == selectedDate) Color.Gray else Color.Transparent
+                                    if (date == selectedDate) MainMenuBtn else Color.Transparent
                                 ),
                             contentAlignment = Alignment.Center
                         ) {

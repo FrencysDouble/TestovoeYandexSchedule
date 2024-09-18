@@ -27,7 +27,6 @@ open class CoreModule {
     @Provide(cache = Provide.CacheType.Strong)
     open fun provideRetrofit(): Retrofit {
         val token = BuildConfig.API_TOKEN
-        //val token = "ce1b5621-25e3-423e-9d5a-059ab171bcfa"
 
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.HEADERS

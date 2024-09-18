@@ -96,7 +96,7 @@ private fun Screen(navController: NavHostController,controller: MainMenuControll
     val searchData by controller.searchData.observeAsState(emptyList())
     val isLoadingLiveData by controller.isLoading.observeAsState(false)
     val isBadRequest by controller.isBadRequest.observeAsState(false)
-    val isConnectionError by controller.isConnectionError.observeAsState(false)
+    val isConnectionErrorMain by controller.isConnectionError.observeAsState(false)
 
         Column(
             Modifier
@@ -113,7 +113,7 @@ private fun Screen(navController: NavHostController,controller: MainMenuControll
         Spacer(modifier = Modifier.padding(8.dp))
         SearchButton(controller,selectedText)
         Spacer(modifier = Modifier.padding(12.dp))
-        MainList(searchData,isLoadingLiveData,isBadRequest,isConnectionError)
+        MainList(searchData,isLoadingLiveData,isBadRequest,isConnectionErrorMain)
 
     }
 
