@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TestovoeYandexSchedule</string>
+    <string name="main_menu_title">Расписание пригородного и междугородного транспорта</string>
+    <string name="search_app_from">Откуда</string>
+    <string name="bad_request_text">По вашему запросу ничего не найдено</string>
+    <string name="connection_error_text">Отсутствует подключение к интернету</string>
+</resources>
