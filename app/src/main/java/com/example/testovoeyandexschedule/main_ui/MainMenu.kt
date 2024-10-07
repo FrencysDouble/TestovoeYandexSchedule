@@ -90,6 +90,7 @@ fun MainMenu(
 }
 
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 private fun Screen(navController: NavHostController,controller: MainMenuController,selectedText: SelectedText)
 {
