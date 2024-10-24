@@ -56,10 +56,13 @@ data class SearchDataModel(
                 } else {
                     Duration.ZERO
                 }
+                val timeLeftHours = timeLeft.toHours()
+                val timeLeftMinutes = timeLeft.minusHours(timeLeftHours).toMinutes()
+
                 val timeLeftFormatted = String.format(
                     "%d ч %02d мин",
-                    timeLeft.toHours(),
-                    timeLeft.toMinutesPart()
+                    timeLeftHours,
+                    timeLeftMinutes
                 )
 
                 val vector = when(segment.to.transport_type)
