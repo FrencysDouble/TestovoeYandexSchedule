@@ -23,6 +23,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AirplanemodeActive
 import androidx.compose.material.icons.filled.DirectionsBus
 import androidx.compose.material.icons.filled.SearchOff
 import androidx.compose.material.icons.filled.Star
@@ -428,7 +429,7 @@ private fun MainList(
 @Composable
 private fun MainListItem(item: SearchDataModel)
 {
-    Column {
+    Column(Modifier.background(Color.White)) {
         Row(
             Modifier
                 .fillMaxWidth()
@@ -464,7 +465,7 @@ private fun MainListItem(item: SearchDataModel)
 
                 Column(
                     Modifier
-                        .fillMaxHeight()
+                        .height(50.dp)
                         .padding(start = 6.dp, end = 12.dp, top = 24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -480,7 +481,35 @@ private fun MainListItem(item: SearchDataModel)
                 }
             }
         }
+
+        Column (Modifier.fillMaxWidth().padding(start = 24.dp, top = 8.dp))
+        {
+            Text("Отбытие через: ${item.timeLeft}",
+                fontSize = 14.sp,
+                fontStyle = FontStyle.Italic)
+        }
         Spacer(modifier = Modifier.padding(12.dp))
+
     }
+}
+
+@Preview
+@Composable
+private fun preview()
+{
+    val item : SearchDataModel = SearchDataModel(
+        "12:00",
+        "13 окт",
+        "13:00",
+        "12 окт",
+        "6 ч 05 мин",
+        "Москва -- Уфа",
+        "Boeing 777",
+        "Уфа",
+        "Москва",
+                "",
+        Icons.Filled.AirplanemodeActive,
+        "12:00")
+    MainListItem(item)
 }
 

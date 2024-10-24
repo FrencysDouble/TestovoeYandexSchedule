@@ -1,5 +1,8 @@
 package com.example.testovoeyandexschedule.models
 
+import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddAPhoto
 import androidx.compose.material.icons.filled.Airlines
@@ -11,6 +14,7 @@ import androidx.compose.material.icons.filled.Water
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.testovoeyandexschedule.models.dto.SearchDataDTO
+import java.time.Duration
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
@@ -27,11 +31,14 @@ data class SearchDataModel(
     val titleFrom: String,
     val titleTo: String,
     val density: String,
-    val vectorIcon : ImageVector
+    val vectorIcon : ImageVector,
+    val timeLeft : String
 ) {
     companion object {
         private val dateTimeFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
 
+        @SuppressLint("DefaultLocale")
+        @RequiresApi(Build.VERSION_CODES.S)
         fun map(dto: SearchDataDTO): List<SearchDataModel> {
             return dto.segments.map { segment ->
                 val arrivalDateTime = OffsetDateTime.parse(segment.arrival.toString(), dateTimeFormatter)
@@ -43,6 +50,17 @@ data class SearchDataModel(
                 val hours = segment.duration / 3600
                 val minutes = (segment.duration % 3600) / 60
                 val durationFormatted = String.format("%d ч %02d мин", hours, minutes)
+                val now = OffsetDateTime.now()
+                val timeLeft = if (departureDateTime.isAfter(now)) {
+                    Duration.between(now, departureDateTime)
+                } else {
+                    Duration.ZERO
+                }
+                val timeLeftFormatted = String.format(
+                    "%d ч %02d мин",
+                    timeLeft.toHours(),
+                    timeLeft.toMinutesPart()
+                )
 
                 val vector = when(segment.to.transport_type)
                 {
@@ -66,7 +84,8 @@ data class SearchDataModel(
                     titleFrom = segment.from.title,
                     titleTo = segment.to.title,
                     density = segment.thread.interval?.density ?: "",
-                    vectorIcon = vector
+                    vectorIcon = vector,
+                    timeLeft = timeLeftFormatted
                 )
             }
         }
