@@ -21,3 +21,5 @@ val TextTertiary = Color(0xFF878787)
 val MainMenuBtn = Color(0xFFfccb42)
 
 val IconBusColor = Color(0xFFf29a3d)
+
+val BackroundMain = Color(0xFFf0f2f5)

@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.testovoeyandexschedule.di.ControllersModule
 import com.example.testovoeyandexschedule.main_ui.MainMenu
+import com.example.testovoeyandexschedule.main_ui.OrderDetail
 import com.example.testovoeyandexschedule.main_ui.SearchMenu
 
 @Composable
@@ -22,6 +23,10 @@ fun MainNavigation(controllers: ControllersModule)
         composable(Routes.SearchScreen.route)
         {
             SearchMenu(navController,controllers.provideMainMenuController(),controllers.provideSelectedText())
+        }
+        composable(Routes.OrderDetailScreen.route)
+        {
+            OrderDetail(navController)
         }
     }
 

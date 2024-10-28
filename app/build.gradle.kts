@@ -80,6 +80,11 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     implementation ("androidx.compose.runtime:runtime-livedata:1.7.1")
 
+
+    // osmdroid dependency
+    implementation ("org.osmdroid:osmdroid-android:6.1.14")
+    implementation ("org.osmdroid:osmdroid-geopackage:6.1.14")
+
     // Network
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")
     implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
@@ -87,6 +92,7 @@ dependencies {
     implementation ("com.squareup.moshi:moshi:1.12.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation ("com.squareup.moshi:moshi-kotlin:1.12.0")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 
     // DI
     dependencies {

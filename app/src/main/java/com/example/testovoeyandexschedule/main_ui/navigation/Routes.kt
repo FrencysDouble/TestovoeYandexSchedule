@@ -4,7 +4,9 @@ object Routes
 {
     object MainScreen : Screen ("main_screen")
 
-    object SearchScreen : Screen("search_screen")
+    object SearchScreen : Screen ("search_screen")
+
+    object OrderDetailScreen : Screen ("orderDetail_screen")
 
 }
 
